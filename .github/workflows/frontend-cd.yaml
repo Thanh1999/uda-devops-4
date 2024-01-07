@@ -134,7 +134,8 @@ jobs:
           kubectl apply -f service.yaml
 
       - name: Get LoadBalancer URL
+        id: get-loadbalancer-url
         run: kubectl get service frontend -o json | jq -r '.status.loadBalancer.ingress[0].hostname'
 
       - name: Print LoadBalancer URL
-        run: echo "LoadBalancer URL: ${{ steps.Get LoadBalancer URL.outputs.stdout }}"
+        run: echo "LoadBalancer URL: ${{ steps.get-loadbalancer-url.outputs.stdout }}"
