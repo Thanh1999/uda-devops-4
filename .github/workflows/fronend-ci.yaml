@@ -30,7 +30,7 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
       
       - name: Restore cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
@@ -58,7 +58,7 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
 
       - name: Restore cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
@@ -72,7 +72,7 @@ jobs:
   build:
     needs: [lint, test]
     runs-on: ubuntu-latest
-    
+
     defaults:
       run:
         working-directory: starter/frontend
@@ -87,7 +87,7 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
 
       - name: Restore cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
