@@ -8,6 +8,8 @@ app = Flask(__name__)
 CORS(app)
 app.register_blueprint(movies_api)
 
+print('Testing')
+
 # Start app
 if __name__ == "__main__":
     app.run(
