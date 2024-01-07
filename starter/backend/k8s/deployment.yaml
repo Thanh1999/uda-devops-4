@@ -15,7 +15,7 @@ spec:
         app: backend
     spec:
       containers:
-        - name: backend
+        - name: 111931375561.dkr.ecr.us-east-1.amazonaws.com/frontend
           image: backend
           ports:
             - containerPort: 5000

@@ -69,33 +69,22 @@ jobs:
       - name: Run tests
         run: npm run test
 
-  build:
-    needs: [lint, test]
+   build:
     runs-on: ubuntu-latest
 
     defaults:
       run:
         working-directory: starter/frontend
 
+    needs: [lint, test]
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ env.NODE_VERSION }}
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
 
-      - name: Restore cache
-        uses: actions/cache@v3
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Run build
-        run: npm run test
+      - name: Build Docker image
+        run: docker build --build-arg=REACT_APP_MOVIE_API_URL=http://localhost:5000 mp-frontend:latest .
 
 
