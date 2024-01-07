@@ -8,6 +8,7 @@ export default function App() {
 
   const handleMovieClick = (movie) => {
     setSelectedMovie(movie);
+    console.log("testing");
   };
 
   return (
