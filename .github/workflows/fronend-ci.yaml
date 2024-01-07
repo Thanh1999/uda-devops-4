@@ -2,8 +2,6 @@ name: Frontend Workflow
 
 on:
   workflow_dispatch:
-    paths:
-      - 'starter/frontend/**'
   
   pull_request:
     branches:
@@ -17,6 +15,11 @@ env:
 jobs:
   lint:
     runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: starter/frontend
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -40,6 +43,11 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: starter/frontend
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -64,6 +72,11 @@ jobs:
   build:
     needs: [lint, test]
     runs-on: ubuntu-latest
+    
+    defaults:
+      run:
+        working-directory: starter/frontend
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
