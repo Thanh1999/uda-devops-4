@@ -135,8 +135,5 @@ jobs:
 
       - name: Get LoadBalancer URL
         id: get-loadbalancer-url
-        run: export EXTERNAL_URL=$(kubectl get service frontend -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')
-
-      - name: Print LoadBalancer URL
         run: |
-          echo "LoadBalancer URL: $EXTERNAL_URL"
+          echo "LoadBalancer URL: $(kubectl get service frontend -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')"
