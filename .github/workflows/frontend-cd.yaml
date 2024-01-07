@@ -138,4 +138,5 @@ jobs:
         run: kubectl get service frontend -o json | jq -r '.status.loadBalancer.ingress[0].hostname'
 
       - name: Print LoadBalancer URL
-        run: echo "LoadBalancer URL: ${{ steps.get-loadbalancer-url.outputs.stdout }}"
+        run: |
+          echo "LoadBalancer URL: ${{ steps.get-loadbalancer-url.outputs.stdout }}"
