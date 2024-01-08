@@ -132,3 +132,12 @@ jobs:
         run: |
           kustomize edit set image frontend=111931375561.dkr.ecr.us-east-1.amazonaws.com/frontend:${GITHUB_SHA::7}
           kustomize build | kubectl apply -f -
+
+      - name: Set up kubectl
+        uses: azure/setup-kubectl@v3
+        with:
+          version: "latest"
+    
+      - name: Get LoadBalancer URL
+        run: |
+          echo "LoadBalancer URL: $(kubectl get service frontend -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')"
