@@ -71,6 +71,7 @@ jobs:
 
   build:
     needs: [lint, test]
+    if: success()
     runs-on: ubuntu-latest
     environment:
       name: staging
